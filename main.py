@@ -35,7 +35,8 @@ shift = 1
 
 alphabet = """~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:\"ZXCVBNM<>?`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./ 
 """
-sha_alphabet = hashlib.sha1(alphabet.encode("utf-8")).hexdigest()
+sha_alphabet = hashlib.sha3_512(alphabet.encode("utf-8")).hexdigest()
+
 plaintext = """The atmosphere of Mars is about 100 times thinner than Earth's, and it is 95 percent carbon dioxide. Here's a breakdown of its composition, according to a NASA fact sheet:
 
 Carbon dioxide: 95.32 percent
@@ -44,7 +45,7 @@ Argon: 1.6 percent
 Oxygen: 0.13 percent
 Carbon monoxide: 0.08 percent
 Also, minor amounts of: water, nitrogen oxide, neon, hydrogen-deuterium-oxygen, krypton and xenon."""
-sha_plaintext = hashlib.sha1(plaintext.encode("utf-8")).hexdigest()
+sha_plaintext = hashlib.sha3_512(plaintext.encode("utf-8")).hexdigest()
 
 class prng:
   def __init__(self, seed):
@@ -114,6 +115,17 @@ def shuffle_binb(alphabet, str):
   shuffle(alphabet, array[2])
   shuffle(alphabet, array[3])
   shuffle(alphabet, array[4])
+  shuffle(alphabet, array[5])
+  shuffle(alphabet, array[6])
+  shuffle(alphabet, array[7])
+  shuffle(alphabet, array[8])
+  shuffle(alphabet, array[9])
+  shuffle(alphabet, array[10])
+  shuffle(alphabet, array[11])
+  shuffle(alphabet, array[12])
+  shuffle(alphabet, array[13])
+  shuffle(alphabet, array[14])
+  shuffle(alphabet, array[15])
 
 def cipher_function(cipher):
   def function(random, shift, alphabet, array, sha_alphabet, sha_plaintext):
