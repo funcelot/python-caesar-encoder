@@ -101,12 +101,18 @@ def hex2binb(string):
   return result
 
 def shuffle(array, seed):
-  rng = prng(seed)
+  '''
+  Creates permutation of array based to a given seed
+  '''
+  rnd = prng(seed)
   for i in reversed(range(len(array))):
-    j = math.floor(rng.next(i))
+    j = math.floor(rnd.next(i))
     array[i], array[j] = array[j], array[i]
 
 def shuffle_binb(alphabet, str):
+  '''
+  Shuffles alphabet by key of 16 bytes of input array or hex string (SHA3 512)
+  '''
   if isinstance(str, bytes):
     array = str
   else:
@@ -129,6 +135,9 @@ def shuffle_binb(alphabet, str):
   shuffle(alphabet, array[15])
 
 def cipher_function(cipher):
+  '''
+  Returns shuffle function for a given cipher alphabet
+  '''
   def function(random, shift, alphabet, array, sha_alphabet, sha_plaintext):
     global rnd
     shuffle_binb(alphabet, sha_alphabet)
@@ -142,6 +151,9 @@ def cipher_function(cipher):
   return function
 
 def shift_encrypt(alphabet):
+  '''
+  Returns encoder function for a given alphabet
+  '''
   def enc(char):
     if char == '' or (not char in alphabet): raise Exception("undefined char '" + char + "'")
     position = alphabet.index(char)
@@ -152,6 +164,9 @@ def shift_encrypt(alphabet):
   return enc
 
 def shift_decrypt(alphabet):
+  '''
+  Returns decoder function for a given alphabet
+  '''
   def enc(char):
     if char == '' or (not char in alphabet): raise Exception("undefined char '" + char + "'")
     position = alphabet.index(char)
