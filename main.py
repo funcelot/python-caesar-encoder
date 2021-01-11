@@ -70,7 +70,6 @@ min = 0
 max = 2147483647
 
 seed = 1238473661
-# seed = time.time()
 
 rnd = prng(seed)
 
@@ -96,7 +95,6 @@ def hex2binb(string):
   while len(string) >= 8:
     result.append(int(string[:8], 16))
     string = string[8:]
-  #return [i ^ 0xFFFFFFFF for i in result]
   return result
 
 def shuffle(array, seed):
