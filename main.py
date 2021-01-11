@@ -35,7 +35,6 @@ shift = 1
 
 alphabet = """~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:\"ZXCVBNM<>?`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./ 
 """
-alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 sha_alphabet = hashlib.sha3_512(alphabet.encode("utf-8")).hexdigest()
 
 plaintext = """The atmosphere of Mars is about 100 times thinner than Earth's, and it is 95 percent carbon dioxide. Here's a breakdown of its composition, according to a NASA fact sheet:
@@ -181,41 +180,6 @@ def encrypt_cipher(IV, shift, alphabet, plaintext, sha_alphabet, sha_plaintext):
 
 def decrypt_cipher(IV, shift, alphabet, plaintext, sha_alphabet, sha_plaintext):
   return cipher_function(shift_decrypt)(IV, shift, alphabet, plaintext, sha_alphabet, sha_plaintext)
-
-random_alphabet = [*alphabet]
-
-#import random as PRNG
-#shuffle(random_alphabet, math.floor(rng * max))
-
-alphabet = "".join(random_alphabet)
-
-
-#alphabet = [chr(i) for i in range(0,0x10ffff)]
-#PRNG.shuffle(alphabet)
-
-# encoded = encrypt_cipher(IV, shift, [*alphabet], [*plaintext], sha_alphabet, sha_plaintext)
-# print(encoded)
-
-# decoded = decrypt_cipher(IV, shift, [*alphabet], [*encoded], sha_alphabet, sha_plaintext)
-# print(decoded)
-
-alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-sha_alphabet = hashlib.sha3_512(alphabet.encode("utf-8")).hexdigest()
-
-plaintext = "CRYPTOISSHORTFORCRYPTOGRAPHY"
-sha_plaintext = hashlib.sha3_512(plaintext.encode("utf-8")).hexdigest()
-
-encoded = encrypt_cipher(IV, shift, [*alphabet], [*plaintext], sha_alphabet, sha_plaintext)
-print("".join(encoded))
-
-decoded = decrypt_cipher(IV, shift, [*alphabet], [*encoded], sha_alphabet, sha_plaintext)
-print("".join(decoded))
-
-alphabet = "BACDEFGHIJKLMNOPQRSTUVWXYZ"
-sha_alphabet = hashlib.sha3_512(alphabet.encode("utf-8")).hexdigest()
-
-plaintext = "CRYPTOISSHORTFORCRYPTOGRAPHY"
-sha_plaintext = hashlib.sha3_512(plaintext.encode("utf-8")).hexdigest()
 
 encoded = encrypt_cipher(IV, shift, [*alphabet], [*plaintext], sha_alphabet, sha_plaintext)
 print("".join(encoded))
